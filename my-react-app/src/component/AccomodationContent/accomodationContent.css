@@ -1,0 +1,42 @@
+.description_column {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+.description_title h2 {
+    font-weight: 500;
+}
+
+.location {
+    margin: 5px 0;
+}
+
+.collapse_column {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 76px;
+}
+
+@media (max-width:767.98px) {
+    .description_column {
+        flex-direction: column;
+    }
+
+    .description_host {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    .collapse_column {
+        flex-direction: column;
+        gap: 0;
+    }
+}

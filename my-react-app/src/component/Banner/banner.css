@@ -1,0 +1,74 @@
+/* Bloc commun */
+.banner {
+  position: relative;
+  margin-bottom: 50px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+/* Image */
+.banner__image {
+  display: block;
+  width: 100%;
+  height: 220px;               /* hauteur Figma desktop */
+  object-fit: cover;
+  filter: brightness(0.9);
+}
+
+/* Voile sombre (pour lisibilité du titre) */
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.30);
+  z-index: 1;
+}
+
+/* Zone du texte par-dessus */
+.banner__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  text-align: center;
+  color: #fff;
+  z-index: 2; /* au-dessus du ::before */
+}
+
+/* Titre (accueil) */
+.banner__title {
+  margin: 0;
+  font-size: 44px;
+  font-weight: 500;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+/* Modif pour la page À propos : on garde l'image, sans titre */
+.banner--about .banner__overlay {
+  /* pas de titre => on ne change rien, l'overlay reste neutre */
+}
+.banner--about::before {
+  background: rgba(0, 0, 0, 0.20); /* voile un poil plus léger */
+}
+
+/* ====== Mobile ====== */
+@media (max-width: 768px) {
+  .banner {
+    margin: 0;
+    border-radius: 10px;
+  }
+  .banner__image {
+    height: 110px;              /* hauteur Figma mobile */
+  }
+  .banner__overlay {
+    justify-content: flex-start; /* texte aligné à gauche */
+    padding-left: 15px;
+    text-align: left;
+  }
+  .banner__title {
+    font-size: 21px;
+    font-weight: 500;
+  }
+}

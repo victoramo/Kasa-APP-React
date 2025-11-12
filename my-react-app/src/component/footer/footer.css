@@ -1,0 +1,54 @@
+/* 🧱 Conteneur principal du footer */
+.footer {
+  background-color: #000; 
+  color: #fff; /* texte blanc */
+  display: flex;
+  flex-direction: column; /* éléments empilés : logo + texte */
+  align-items: center;
+  justify-content: center;
+  height: 210px; 
+  width: 100%;
+  margin-top: 40px;
+  text-align: center;
+}
+.footer .container { 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center; 
+  gap:16px; 
+  padding:48px 20px;
+}
+
+/* 🖼️ Logo centré et ajusté */
+.footer__logo {
+  width: 120px; /* taille proche de la maquette */
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* 📝 Texte en bas */
+.footer__text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* 📱 Responsive pour mobile */
+@media (max-width: 768px) {
+  .footer {
+    height: 150px;
+    padding: 20px;
+  }
+
+  .footer__logo {
+    width: 100px;
+    margin-bottom: 15px;
+  }
+
+  .footer__text {
+    font-size: 12px;
+    width: 60%;
+    line-height: 1.4;
+  }
+}

@@ -1,0 +1,73 @@
+/* ====== Conteneur nav (1240px centré comme Figma) ====== */
+.header {
+ max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px; 
+}
+/* Logo */
+.header__logo-link {
+   display: inline-flex; 
+   align-items: flex-end; 
+  }
+
+.header__logo {
+  width: 210px;                   /* ≃ 68px de haut en Figma */
+  height: auto;
+  display: block;
+}
+
+/* ====== Liste de navigation ====== */
+.header ul {
+  display: flex;
+  gap: 57px;                      /* écart Accueil / À propos (≈ Figma) */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: flex-end;
+  line-height: 1;                 /* évite le “saut” vertical */
+}
+
+.header ul li {
+   margin: 0; 
+   padding: 0;
+   }
+
+/* Liens */
+.header a {
+  color: #ff6060;
+  font-size: 24px;                /* Figma */
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity .15s ease;
+  letter-spacing: 0.2px;
+}
+.header a:hover { 
+  opacity: .85; 
+}
+
+/* Lien actif (classe posée par NavLink) */
+.header .liActif {
+  text-decoration: underline;
+  text-underline-offset: 6px;     /* espace sous le texte */
+  text-decoration-thickness: 2px; /* épaisseur de soulignement */
+}
+
+/* ====== Mobile / Tablette ====== */
+@media (max-width: 768px) {
+  .header {
+    padding: 20px 20px 0;
+    align-items: center; 
+    margin-bottom: 20px;         /* plus équilibré visuellement */
+  }
+  .header__logo { width: 145px; }
+  .header ul { gap: 26px; }
+  .header a {
+    font-size: 18px;
+    text-transform: uppercase;    /* variante mobile de la maquette */
+    letter-spacing: .02em;
+  }
+}

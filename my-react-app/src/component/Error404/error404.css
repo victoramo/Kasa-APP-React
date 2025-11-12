@@ -1,0 +1,55 @@
+.Error {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #ff6060;
+}
+
+.Error h1 {
+    font-weight: 700;
+    font-size: 280px;
+    margin: 140 0 140px;
+}
+
+.Error_text {
+    font-size: 45px;
+    margin-bottom: 140px;
+    font-weight: 500;
+}
+
+.Error_link {
+    color: #ff6060;
+    font-size: 23px;
+    margin-bottom: 140px;
+}
+
+@media (max-width: 1024px) {
+    .Error h1 {
+        font-size: 150px;
+        margin: 113px 0;
+    }
+
+    .Error_text {
+        font-size: 24px;
+        margin: 0 60px 113px;
+    }
+
+    .Error_link {
+        font-size: 16px;
+        margin-bottom: 113px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .Error h1 {
+        font-size: 90px;
+    }
+
+    .Error_text {
+        font-size: 18px;
+    }
+
+    .Error_link {
+        font-size: 14px;
+    }
+}

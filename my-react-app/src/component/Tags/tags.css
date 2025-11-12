@@ -1,0 +1,30 @@
+.tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0 0;
+    font-weight: 500;
+}
+
+.tag_item {
+    background-color: #ff6060;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    padding: 4px 30px;
+}
+
+@media (max-width:767.98px) {
+    .tags {
+        margin: 0;
+    }
+
+    .tag_item {
+        font-size: 10px;
+
+        border-radius: 5px;
+        padding: 4px 15px;
+    }
+}

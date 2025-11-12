@@ -1,0 +1,31 @@
+/* ===== Reset simple ===== */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+img { max-width: 100%; display: block; }
+
+/* ===== Base ===== */
+body {
+  margin: 0;
+  background: #fff;                   /* Maquette Kasa : fond blanc */
+  color: #000;
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Structure : contenu qui pousse le footer en bas */
+#root { display: flex; flex-direction: column; }
+main { flex: 1; }
+
+/* Conteneur central commun (Header, Home, About...) */
+.container {
+  max-width: 1240px;                  /* largeur maquette */
+  margin: 0 auto;                     /* centre horizontalement */
+  padding: 0 20px;                    /* respirations latérales */
+}
+
+/* Liens (ne force pas la couleur : chaque composant la gère) */
+a {
+   text-decoration: inherit;
+  }
+
+/* Accessibilité focus */
+:focus-visible { outline: 2px solid #ff6060; outline-offset: 2px; }
