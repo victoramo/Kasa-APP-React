@@ -45,10 +45,28 @@
   text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }
 
-/* Modif pour la page À propos : on garde l'image, sans titre */
-.banner--about .banner__overlay {
-  /* pas de titre => on ne change rien, l'overlay reste neutre */
+
+/* ===== Spécifique À propos ===== */
+
+
+.about__list {
+ max-width: 1024px;      /* ajuste si tu veux un poil plus/moins large */
+  margin: 0 auto 40px;    /* centre la colonne */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
+
+@media (max-width: 768px) {
+  .about .banner {
+    margin-bottom: 16px;
+  }
+  .about__list {
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+}
+
 .banner--about::before {
   background: rgba(0, 0, 0, 0.20); /* voile un poil plus léger */
 }

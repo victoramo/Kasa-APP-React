@@ -1,119 +1,120 @@
+/* ===== Bloc global ===== */
+:root{
+  --kas-anim: 1560ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 .collapse {
-    margin-top: 20px;
-    margin-bottom: 40px;
-    width: 100%;
-
+  margin: 20px 0 40px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;             /* arrondi global doux */
+  overflow: hidden;                 /* cache pendant l’anim */
 }
 
+/* ===== Barre cliquable ===== */
 .collapse_title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #ff6060;
-    color: #fff;
-    padding: 0 15px;
-    border-radius: 10px 10px 10px 10px;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ff6060;
+  color: #fff;
+  padding: 10px 15px;
 }
 
 .collapse_title h2 {
-    font-weight: 500;
-    font-size: 24px;
-    margin: 10px 0;
-
+ margin:0;
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight:600;            
+  font-size:24px;
+  line-height:1;
 }
 
+/* ===== Icône flèche ===== */
 .collapse_icon {
-    background: none;
-    border: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .collapse_icon img {
-    width: 32px;
-    height: auto;
+  width: 32px;
+  height: auto;
+  transition: transform var(--kas-anim);
+  will-change: transform;
+}
+/* 👉 Rotation gérée par l'état du parent */
+
+.collapse.is-open .collapse_icon img {
+  transform: rotate(180deg);
 }
 
-.collapse_icon:hover {
-    cursor: pointer;
-}
-
-.collapse_icon.rotate {
-    transition: transform 0.3s ease-in-out;
-    transform: rotate(-180deg);
-}
-
-.collapse_icon.reverse {
-    transition: transform 0.3s ease-in-out;
-    transform: rotate(0);
-}
-
-
-
-
+/* ===== Contenu animé ===== */
 .collapse_content {
-    background-color: #f6f6f6;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.4s ease-in;
+  background-color: #f6f6f6;
+  max-height: 0;                    /* fermé par défaut */
+  overflow: hidden;
+  transition: max-height var(--kas-anim);   /* animation douce */
+  will-change: max-height; 
+}
+
+/* wrapper interne pour le padding */
+.collapse_inner {
+  padding: 20px;
+  color: #333;
+  line-height: 1.6;
+  opacity:0;
+  transform: translateY(-4px);
+  transition: opacity var(--kas-anim), transform var(--kas-anim);
+}
+
+.collapse.is-open .collapse_inner{
+  opacity:1;
+  transform: translateY(0);     /* remonte en place */
 }
 
 .collapse_content p {
-    padding: 25px 20px 20px 20px;
-    font-weight: 400;
+  margin: 0;
+  font-weight:600;             /* <<< gras demandé */
+  font-size:16px;
 }
 
-.collapse_content.open {
-    margin-top: -10px;
-    max-height: 400px;
-}
-
-.collapse_content.close {
-    max-height: 0;
-    margin-top: -10px;
-    transition: max-height 0.4s ease-out;
-}
-
-
+/* Liste d'équipements si isList=true */
 .collapse_content.facilities ul {
-    padding: 25px 10px 20px 10px;
-    display: block;
-    margin-left: 15px;
-    list-style-type: none;
+  margin: 0;
+  padding-left: 20px;
+  list-style: none;
 }
 
 .collapse_content.facilities li {
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 600;
+    margin:4px 0;
 }
 
-
-
+/* ===== Mobile ===== */
 @media (max-width: 767.98px) {
-    .collapse {
-        padding: 0 0 15px;
-        margin: 0 0 15px;
-    }
+  .collapse {
+    margin: 0 0 16px;
+  }
 
-    .collapse_title {
-        border-radius: 5px;
-        height: 35px;
-    }
+  .collapse_title {
+    padding: 8px 12px;
+  }
 
-    .collapse_title h2 {
-        font-size: 15px;
-    }
+  .collapse_title h2 {
+    font-size: 15px;
+  }
 
-    .collapse_icon img {
-        width: 24px;
-    }
+  .collapse_icon img {
+    width: 24px;
+  }
 
-    .collapse_content p {
-        font-size: 14px;
-    }
+  .collapse_inner {
+    padding: 16px;
+  }
 
-    .collapse_content.facilities li {
-        font-size: 14px;
-    }
+  .collapse_content.facilities li,
+  .collapse_content p {
+    font-size: 14px;
+  }
 }

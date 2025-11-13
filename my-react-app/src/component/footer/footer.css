@@ -19,14 +19,14 @@
   padding:48px 20px;
 }
 
-/* 🖼️ Logo centré et ajusté */
+/* Logo centré et ajusté */
 .footer__logo {
   width: 120px; /* taille proche de la maquette */
   height: auto;
   margin-bottom: 20px;
 }
 
-/* 📝 Texte en bas */
+/* Texte en bas */
 .footer__text {
   font-family: "Montserrat", sans-serif;
   font-size: 24px;

@@ -12,8 +12,13 @@ body {
 }
 
 /* Structure : contenu qui pousse le footer en bas */
-#root { display: flex; flex-direction: column; }
-main { flex: 1; }
+#root {
+  display: flex; 
+  flex-direction: column; 
+}
+main { 
+  flex: 1; 
+}
 
 /* Conteneur central commun (Header, Home, About...) */
 .container {
@@ -28,4 +33,9 @@ a {
   }
 
 /* Accessibilité focus */
-:focus-visible { outline: 2px solid #ff6060; outline-offset: 2px; }
+:focus-visible { 
+  outline: 2px solid #ff6060;
+  outline-offset: 2px; 
+}
+
+
