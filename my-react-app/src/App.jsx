@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 // Composants communs
-import Header from "./component/Header/Header";
+import Header from "../src/component/header/header";
 import Footer from "./component/Footer/Footer";
 
 // Pages

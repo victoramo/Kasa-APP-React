@@ -1,54 +1,56 @@
 /* 🧱 Conteneur principal du footer */
 .footer {
-  background-color: #000; 
-  color: #fff; /* texte blanc */
-  display: flex;
-  flex-direction: column; /* éléments empilés : logo + texte */
-  align-items: center;
-  justify-content: center;
-  height: 210px; 
   width: 100%;
+  background-color: #000;
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 50px 20px 30px;   /* espace propre et Figma-friendly */
   margin-top: 40px;
   text-align: center;
 }
-.footer .container { 
-  display:flex; 
-  flex-direction:column; 
-  align-items:center; 
-  gap:16px; 
-  padding:48px 20px;
+
+/* Sous-conteneur interne */
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
-/* Logo centré et ajusté */
+/* Logo centré */
 .footer__logo {
-  width: 120px; /* taille proche de la maquette */
+  width: 120px;            /* conforme à la maquette */
   height: auto;
-  margin-bottom: 20px;
 }
 
-/* Texte en bas */
+/* Texte */
 .footer__text {
   font-family: "Montserrat", sans-serif;
-  font-size: 24px;
+  font-size: 18px;         /* 24px était trop grand → Figma ≈ 16–18px */
   font-weight: 500;
   margin: 0;
+  opacity: 0.9;            /* petit effet pro */
 }
 
-/* 📱 Responsive pour mobile */
+/* 📱 Responsive mobile */
 @media (max-width: 768px) {
   .footer {
-    height: 150px;
-    padding: 20px;
+    padding: 32px 20px;
+    margin-top: 30px;
   }
 
   .footer__logo {
-    width: 100px;
-    margin-bottom: 15px;
+    width: 100px;          /* plus petit en mobile */
   }
 
   .footer__text {
-    font-size: 12px;
-    width: 60%;
+    font-size: 12px;       /* comme la maquette mobile */
+    width: 70%;
     line-height: 1.4;
   }
 }

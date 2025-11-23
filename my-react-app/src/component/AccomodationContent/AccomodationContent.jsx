@@ -1,70 +1,94 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
+
 import Carousel from "../Carousel/Carousel";
 import Tags from "../Tags/Tags";
 import Host from "../Host/Host";
 import Rating from "../Rating/Rating";
 import Collapse from "../Collapse/Collapse";
+
 import "./accomodationContent.css";
 
 export default function AccomodationContent() {
-  const [cardData, setCardData] = useState(null);
   const { id } = useParams();
-  const navigate = useNavigate();
+
+  const [accommodation, setAccommodation] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8080/api/properties/${id}`
-        );
-
-        if (response.status === 404) {
-          console.log("Page not found. Redirecting to Page404");
-          navigate("../../pages/Page404");
-        } else {
-          const data = await response.json();
-          setCardData(data);
+    fetch(`http://localhost:8080/api/properties/${id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Logement non trouvé");
         }
-      } catch (error) {
-        console.error("Error fetching card data:", error);
-        navigate("../../pages/Page404");
-      }
-    };
+        return response.json();
+      })
+      .then((data) => {
+        setAccommodation(data);
+        setHasError(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setHasError(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [id]);
 
-    fetchData();
-  }, [id, navigate]);
+  if (isLoading) {
+    return <p>Chargement du logement...</p>;
+  }
 
-  if (cardData === null) {
-    // Return a loading state or placeholder while data is being fetched
-    return <p>Loading...</p>;
+  if (hasError || !accommodation) {
+    return <Navigate to="/404" replace />;
   }
 
   return (
-    <div className="content">
-      <Carousel images={cardData.pictures} />
+    <main className="accommodation-page">
 
-      <div className="description_column">
-        <div className="description_title">
-          <h2>{cardData.title}</h2>
-          <p className="location">{cardData.location}</p>
-          <Tags tagData={cardData.tags} />
+      {/* Carrousel */}
+      <Carousel images={accommodation.pictures} />
+
+      {/* Header */}
+      <section className="accommodation-header">
+
+        {/* Partie gauche */}
+        <div className="accommodation-header-left">
+          <h1 className="accommodation-title">{accommodation.title}</h1>
+          <p className="accommodation-location">{accommodation.location}</p>
+
+          <Tags tags={accommodation.tags} />
         </div>
 
-        <div className="description_host">
-          <Host hostData={cardData.host} />
-          <Rating ratingData={cardData.rating} />
+        {/* Partie droite */}
+        <div className="accommodation-header-right">
+          <Host host={accommodation.host} />
+          <Rating rating={accommodation.rating} />
         </div>
-      </div>
+      </section>
 
-      <div className="collapse_column">
-        <Collapse title="Description" content={cardData.description} />
-        <Collapse
-          title="Equipements"
-          content={cardData.equipments}
-          isList={true}
-        />
-      </div>
-    </div>
+      {/* Collapses */}
+      <section className="accommodation-collapses">
+
+        <div className="accommodation-collapse-item">
+          <Collapse title="Description">
+            <p>{accommodation.description}</p>
+          </Collapse>
+        </div>
+
+        <div className="accommodation-collapse-item">
+          <Collapse title="Équipements">
+            <ul className="accommodation-equipments">
+              {accommodation.equipments.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </Collapse>
+        </div>
+
+      </section>
+    </main>
   );
 }

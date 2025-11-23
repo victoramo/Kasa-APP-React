@@ -1,92 +1,57 @@
-/* Bloc commun */
-.banner {
-  position: relative;
-  margin-bottom: 50px;
-  border-radius: 25px;
-  overflow: hidden;
-}
-
-/* Image */
-.banner__image {
-  display: block;
+/* 🧱 Conteneur principal du footer */
+.footer {
   width: 100%;
-  height: 220px;               /* hauteur Figma desktop */
-  object-fit: cover;
-  filter: brightness(0.9);
-}
-
-/* Voile sombre (pour lisibilité du titre) */
-.banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.30);
-  z-index: 1;
-}
-
-/* Zone du texte par-dessus */
-.banner__overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 16px;
-  text-align: center;
+  background-color: #000;
   color: #fff;
-  z-index: 2; /* au-dessus du ::before */
-}
 
-/* Titre (accueil) */
-.banner__title {
-  margin: 0;
-  font-size: 44px;
-  font-weight: 500;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
-}
-
-
-/* ===== Spécifique À propos ===== */
-
-
-.about__list {
- max-width: 1024px;      /* ajuste si tu veux un poil plus/moins large */
-  margin: 0 auto 40px;    /* centre la colonne */
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  justify-content: center;
+  align-items: center;
+
+  padding: 50px 20px 30px;   /* espace propre et Figma-friendly */
+  margin-top: 40px;
+  text-align: center;
 }
 
+/* Sous-conteneur interne */
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Logo centré */
+.footer__logo {
+  width: 120px;            /* conforme à la maquette */
+  height: auto;
+}
+
+/* Texte */
+.footer__text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;         /* 24px était trop grand → Figma ≈ 16–18px */
+  font-weight: 500;
+  margin: 0;
+  opacity: 0.9;            /* petit effet pro */
+}
+
+/* 📱 Responsive mobile */
 @media (max-width: 768px) {
-  .about .banner {
-    margin-bottom: 16px;
+  .footer {
+    padding: 32px 20px;
+    margin-top: 30px;
   }
-  .about__list {
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-}
 
-.banner--about::before {
-  background: rgba(0, 0, 0, 0.20); /* voile un poil plus léger */
-}
+  .footer__logo {
+    width: 100px;          /* plus petit en mobile */
+  }
 
-/* ====== Mobile ====== */
-@media (max-width: 768px) {
-  .banner {
-    margin: 0;
-    border-radius: 10px;
-  }
-  .banner__image {
-    height: 110px;              /* hauteur Figma mobile */
-  }
-  .banner__overlay {
-    justify-content: flex-start; /* texte aligné à gauche */
-    padding-left: 15px;
-    text-align: left;
-  }
-  .banner__title {
-    font-size: 21px;
-    font-weight: 500;
+  .footer__text {
+    font-size: 12px;       /* comme la maquette mobile */
+    width: 70%;
+    line-height: 1.4;
   }
 }
+/* ===== Conteneur principal ===== */

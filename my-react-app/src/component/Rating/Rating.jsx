@@ -1,18 +1,29 @@
 import "./rating.css";
 
-export default function Rating({ ratingData }) {
-  const filledStars = Array.from({ length: ratingData }, (_, index) => (
-    <i key={index} className="fas fa-star filled-star"></i>
-  ));
-  // the (_,index) syntax signals that we want to ignore the first argument and use the second as index
-  const emptyStars = Array.from({ length: 5 - ratingData }, (_, index) => (
-    <i key={index} className="far fa-star empty-star"></i>
-  ));
+function Rating({ rating }) {
+  // Convertit en nombre si "rating" est une string
+  const value = Number(rating);
+
+  // Nombre total d'étoiles dans Kasa
+  const maxStars = 5;
 
   return (
     <div className="rating">
-      {filledStars}
-      {emptyStars}
+      {[...Array(maxStars)].map((_, index) => {
+        // Si l'étoile doit être pleine ou vide
+        const isFilled = index < value;
+
+        return (
+          <span
+            key={index}
+            className={isFilled ? "star filled" : "star empty"}
+          >
+            ★
+          </span>
+        );
+      })}
     </div>
   );
 }
+
+export default Rating;

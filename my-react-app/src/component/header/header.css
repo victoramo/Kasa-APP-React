@@ -1,73 +1,78 @@
-/* ====== Conteneur nav (1240px centré comme Figma) ====== */
+/* ====== Bandeau principal ====== */
 .header {
- max-width: 1240px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 40px 20px 0;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 40px; 
+  align-items: center;
+  margin-bottom: 40px;
 }
-/* Logo */
+
+/* ====== Logo ====== */
 .header__logo-link {
-   display: inline-flex; 
-   align-items: flex-end; 
-  }
+  display: inline-flex;
+}
 
 .header__logo {
-  width: 210px;                   /* ≃ 68px de haut en Figma */
+  width: 210px;        /* valeur proche de la maquette desktop */
   height: auto;
   display: block;
 }
 
 /* ====== Liste de navigation ====== */
-.header ul {
+.header__nav-list {
   display: flex;
-  gap: 57px;                      /* écart Accueil / À propos (≈ Figma) */
+  gap: 57px;           /* espace entre Accueil et À propos */
   margin: 0;
   padding: 0;
   list-style: none;
-  align-items: flex-end;
-  line-height: 1;                 /* évite le “saut” vertical */
 }
 
-.header ul li {
-   margin: 0; 
-   padding: 0;
-   }
-
-/* Liens */
-.header a {
-  color: #ff6060;
-  font-size: 24px;                /* Figma */
+/* Liens de navigation */
+.header__nav-link {
+  color: #000;
+  font-size: 24px;     /* taille desktop comme Figma */
   font-weight: 500;
   text-decoration: none;
-  transition: opacity .15s ease;
-  letter-spacing: 0.2px;
-}
-.header a:hover { 
-  opacity: .85; 
+  letter-spacing: 0.02em;
+  transition: opacity 0.15s ease;
 }
 
-/* Lien actif (classe posée par NavLink) */
-.header .liActif {
+.header__nav-link:hover {
+  opacity: 0.85;
+}
+
+/* Lien actif : souligné */
+.header__nav-link--active {
   text-decoration: underline;
-  text-underline-offset: 6px;     /* espace sous le texte */
-  text-decoration-thickness: 2px; /* épaisseur de soulignement */
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
 }
 
-/* ====== Mobile / Tablette ====== */
+/* ====== Responsive : mobile / tablette ====== */
 @media (max-width: 768px) {
   .header {
     padding: 20px 20px 0;
-    align-items: center; 
-    margin-bottom: 20px;         /* plus équilibré visuellement */
+    margin-bottom: 20px;
   }
-  .header__logo { width: 145px; }
-  .header ul { gap: 26px; }
-  .header a {
-    font-size: 18px;
-    text-transform: uppercase;    /* variante mobile de la maquette */
-    letter-spacing: .02em;
+
+  .header__logo {
+    width: 145px;      /* logo plus petit sur iPhone */
+  }
+
+  .header__nav-list {
+    gap: 26px;
+  }
+
+  .header__nav-link {
+    font-size: 12px;          /* texte plus petit */
+    text-transform: uppercase; /* comme sur la vidéo */
+    letter-spacing: 0.05em;
+  }
+
+  .header__nav-link--active {
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
   }
 }

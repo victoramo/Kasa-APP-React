@@ -1,41 +1,81 @@
-/* ===== Reset simple ===== */
-* { box-sizing: border-box; }
-html, body, #root { height: 100%; }
-img { max-width: 100%; display: block; }
-
-/* ===== Base ===== */
-body {
-  margin: 0;
-  background: #fff;                   /* Maquette Kasa : fond blanc */
-  color: #000;
-  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+/* ============================
+   🔧 RESET MINIMAL
+   ============================ */
+* {
+  box-sizing: border-box;
 }
 
-/* Structure : contenu qui pousse le footer en bas */
+html,
+body,
 #root {
-  display: flex; 
-  flex-direction: column; 
-}
-main { 
-  flex: 1; 
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Conteneur central commun (Header, Home, About...) */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================
+   🎨 STYLES DE BASE
+   ============================ */
+body {
+  background: #fff; /* Figma Kasa : fond blanc */
+  color: #000;
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  line-height: 1.4;
+}
+
+/* ============================
+   📐 STRUCTURE APP (footer en bas)
+   ============================ */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+main {
+  flex: 1; /* pousse le footer vers le bas */
+}
+
+/* ============================
+   🧱 CONTAINER CENTRAL
+   - Utilisé pour Home, About, Accommodation, etc.
+   ============================ */
 .container {
-  max-width: 1240px;                  /* largeur maquette */
-  margin: 0 auto;                     /* centre horizontalement */
-  padding: 0 20px;                    /* respirations latérales */
+  max-width: 1240px; /* largeur identique à la maquette */
+  margin: 0 auto;
+  padding: 0 20px; /* marges latérales confortables */
 }
 
-/* Liens (ne force pas la couleur : chaque composant la gère) */
+/* ============================
+   🔗 LIENS
+   ============================ */
 a {
-   text-decoration: inherit;
-  }
-
-/* Accessibilité focus */
-:focus-visible { 
-  outline: 2px solid #ff6060;
-  outline-offset: 2px; 
+  color: inherit; /* chaque composant gère sa propre couleur */
+  text-decoration: inherit;
 }
 
+/* ============================
+   ♿ ACCESSIBILITÉ FOCUS
+   ============================ */
+:focus-visible {
+  outline: 2px solid #ff6060;
+  outline-offset: 2px;
+}
 
+/* ============================
+   📱 RESPONSIVE
+   ============================ */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px; /* respirations un peu plus petites */
+  }
+}
+/* ============================
+   Fin du fichier index.css
+   ============================ */

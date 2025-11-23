@@ -9,8 +9,8 @@ import './cards.css';
 export default function Cards({ id, cover, title }) {
   return (
     <article className="cards" data-id={id}>
-      <img src={cover} alt={title} />
-      <p className="p_logement">{title}</p>
+      <img className="cards__image" src={cover} alt={title} />
+      <h2 className="cards__title">{title}</h2>
     </article>
   );
 }

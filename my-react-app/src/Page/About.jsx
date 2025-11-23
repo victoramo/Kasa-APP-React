@@ -3,18 +3,6 @@ import Banner from "../component/Banner/Banner";
 import bannerImg from "../assets/banner-img2.png";
 import Collapse from "../component/Collapse/Collapse";
 
-/**
- * Page À propos
- * - Affiche la bannière (image "montagne" comme sur la maquette)
- * - Liste de 4 collapses : Fiabilité, Respect, Service, Sécurité
- * 
- * 🔎 Explication simple :
- *  - On prépare un tableau "items" avec title + content.
- *  - On fait un .map() pour créer un <Collapse> par item.
- *  - <Collapse> reçoit le titre et le texte (children).
- *  - Le rendu est contenu dans <main className="about container"> pour
- *    respecter la largeur max 1240px de la maquette.
- */
 const items = [
   {
     title: "Fiabilité",
@@ -42,17 +30,13 @@ export default function About() {
   return (
     <main className="about container">
 
-      <Banner 
-      image={bannerImg} alt="Montagnes"/>
+      <Banner image={bannerImg} alt="Montagnes" />
 
-      {/* Liste des collapses */}
       <section className="about__list">
         {items.map(({ title, content }) => (
-          <Collapse 
-                key={title} 
-                title={title} 
-                content={content} 
-          />
+          <Collapse key={title} title={title}>
+            <p>{content}</p>
+          </Collapse>
         ))}
       </section>
     </main>

@@ -1,30 +1,30 @@
+/* Conteneur des tags */
 .tags {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 10px 0 0;
-    font-weight: 500;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 0;
 }
 
+/* Chaque tag (petite pastille rouge) */
 .tag_item {
-    background-color: #ff6060;
-    color: white;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 14px;
-    padding: 4px 30px;
+  background-color: #ff6060;
+  color: white;
+  padding: 4px 30px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-@media (max-width:767.98px) {
-    .tags {
-        margin: 0;
-    }
+/* Version mobile */
+@media (max-width: 767.98px) {
+  .tags {
+    margin: 0;
+  }
 
-    .tag_item {
-        font-size: 10px;
-
-        border-radius: 5px;
-        padding: 4px 15px;
-    }
+  .tag_item {
+    font-size: 10px;
+    padding: 4px 15px;
+    border-radius: 5px;
+  }
 }

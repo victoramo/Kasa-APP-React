@@ -1,42 +1,86 @@
-.description_column {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0;
+/* Conteneur général de la page logement */
+.accommodation-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
 }
 
-.description_title h2 {
-    font-weight: 500;
+/* Bloc titre / host / rating */
+.accommodation-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
 }
 
-.location {
-    margin: 5px 0;
+/* Partie gauche : titre, localisation, tags */
+.accommodation-header-left {
+  max-width: 70%;
 }
 
-.collapse_column {
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    gap: 76px;
+.accommodation-title {
+  margin: 0 0 5px;
+  font-size: 36px;
+  color: #ff6060;
+  font-weight: 500;
 }
 
-@media (max-width:767.98px) {
-    .description_column {
-        flex-direction: column;
-    }
+.accommodation-location {
+  margin: 0;
+  font-size: 18px;
+}
 
-    .description_host {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        align-items: center;
+/* Partie droite : host + rating (déjà stylés par leurs propres CSS) */
+.accommodation-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
 
-    }
+/* Bloc des 2 Collapse côte à côte */
+.accommodation-collapses {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
+}
 
-    .collapse_column {
-        flex-direction: column;
-        gap: 0;
-    }
+.accommodation-collapse-item {
+  flex: 1;
+}
+
+/* Liste des équipements dans le collapse */
+.accommodation-equipments {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* -------- Version mobile -------- */
+@media (max-width: 767.98px) {
+  .accommodation-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .accommodation-header-left {
+    max-width: 100%;
+  }
+
+  .accommodation-title {
+    font-size: 24px;
+  }
+
+  .accommodation-location {
+    font-size: 14px;
+  }
+
+  .accommodation-header-right {
+    align-items: flex-start;
+  }
+
+  .accommodation-collapses {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
