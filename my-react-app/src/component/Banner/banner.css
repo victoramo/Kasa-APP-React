@@ -1,57 +1,78 @@
-/* 🧱 Conteneur principal du footer */
-.footer {
+/* ===== Bannière générale ===== */
+.banner {
+  position: relative;
   width: 100%;
-  background-color: #000;
-  color: #fff;
+  max-width: 1240px;
+  margin: 0 auto 40px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+/* Image de la bannière */
+.banner__image {
+  width: 100%;
+  height: 220px;        /* Taille Figma desktop */
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85);
+}
+
+/* Voile sombre */
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1;
+}
+
+/* Variante About : voile plus léger */
+.banner--about::before {
+  background: rgba(0,0,0,0.20);
+}
+
+/* Texte en overlay */
+.banner__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-
-  padding: 50px 20px 30px;   /* espace propre et Figma-friendly */
-  margin-top: 40px;
   text-align: center;
+
+  padding: 0 20px;
 }
 
-/* Sous-conteneur interne */
-.footer .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-/* Logo centré */
-.footer__logo {
-  width: 120px;            /* conforme à la maquette */
-  height: auto;
-}
-
-/* Texte */
-.footer__text {
-  font-family: "Montserrat", sans-serif;
-  font-size: 18px;         /* 24px était trop grand → Figma ≈ 16–18px */
+/* Titre Home */
+.banner__title {
+  font-size: 44px;
   font-weight: 500;
+  color: white;
   margin: 0;
-  opacity: 0.9;            /* petit effet pro */
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
 
-/* 📱 Responsive mobile */
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .footer {
-    padding: 32px 20px;
-    margin-top: 30px;
+  .banner {
+    border-radius: 10px;
+    margin-bottom: 16px;
   }
 
-  .footer__logo {
-    width: 100px;          /* plus petit en mobile */
+  .banner__image {
+    height: 110px;     /* Taille mobile Figma */
+    border-radius: 10px;
   }
 
-  .footer__text {
-    font-size: 12px;       /* comme la maquette mobile */
-    width: 70%;
-    line-height: 1.4;
+  .banner__overlay {
+    justify-content: flex-start;
+    padding-left: 16px;
+    text-align: left;
+  }
+
+  .banner__title {
+    font-size: 22px;
   }
 }
-/* ===== Conteneur principal ===== */
