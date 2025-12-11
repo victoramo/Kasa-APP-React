@@ -31,10 +31,13 @@
 
   .host_name {
     font-size: 12px;
+     margin-left: 260px;
+  
   }
 
   .host_image {
     width: 32px;
     height: 32px;
+   
   }
 }
