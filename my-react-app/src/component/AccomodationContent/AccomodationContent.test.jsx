@@ -5,7 +5,6 @@ import { describe, test, expect, beforeEach, vi } from "vitest";
 
 import AccomodationContent from "./AccomodationContent.jsx";
 
-// petit mock de useParams + Navigate
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
   return {
@@ -29,9 +28,7 @@ describe("AccomodationContent", () => {
       </MemoryRouter>
     );
 
-    expect(
-      screen.getByText(/chargement du logement/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/chargement du logement/i)).toBeInTheDocument();
   });
 
   test("affiche les informations du logement lorsque la requête réussit", async () => {
@@ -60,5 +57,23 @@ describe("AccomodationContent", () => {
 
     const title = await screen.findByText(/appartement cosy/i);
     expect(title).toBeInTheDocument();
+  });
+
+  test("redirige vers /404 si fetch échoue (logement non trouvé)", async () => {
+    // On simule une réponse serveur "KO" (ex: 404)
+    globalThis.fetch.mockResolvedValueOnce({
+      ok: false,
+    });
+
+    render(
+      <MemoryRouter>
+        <AccomodationContent />
+      </MemoryRouter>
+    );
+
+    // Après la fin du chargement, le composant doit rendre <Navigate to="/404" />
+    // (mocké en <div>Redirect to /404</div>)
+    const redirect = await screen.findByText(/redirect to \/404/i);
+    expect(redirect).toBeInTheDocument();
   });
 });

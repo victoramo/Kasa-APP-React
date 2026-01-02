@@ -17,7 +17,7 @@ describe("Carousel", () => {
   test("clique sur la flèche droite passe à l'image suivante", () => {
     render(<Carousel images={images} />);
 
-    fireEvent.click(screen.getByAltText(/flêche de droite/i));
+    fireEvent.click(screen.getByAltText(/image suivante/i));
 
     const img = screen.getByRole("img", { name: /slide 2/i });
     expect(img).toHaveAttribute("src", "img2.jpg");
@@ -27,7 +27,7 @@ describe("Carousel", () => {
   test("clique sur la flèche gauche depuis la première image revient à la dernière", () => {
     render(<Carousel images={images} />);
 
-    fireEvent.click(screen.getByAltText(/flêche de gauche/i));
+    fireEvent.click(screen.getByAltText(/image précédente/i));
 
     const img = screen.getByRole("img", { name: /slide 3/i });
     expect(img).toHaveAttribute("src", "img3.jpg");

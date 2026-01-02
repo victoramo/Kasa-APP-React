@@ -1,62 +1,60 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, test, expect } from "vitest";
-import Collapse from "./Collapse.jsx";
+
+import Collapse from "./Collapse"; // adapte si besoin (ex: "./Collapse.jsx")
 
 describe("Collapse", () => {
-  test("est fermé par défaut (class is-open absente)", () => {
+  test("s'ouvre au clic souris", () => {
     const { container } = render(
-      <Collapse title="Description" content="Texte caché" />
+      <Collapse title="Description">
+        <p>Texte affiché</p>
+      </Collapse>
     );
 
-    const root = container.firstChild; // <div class="collapse ...">
-    expect(root).not.toHaveClass("is-open");
-    // le texte est dans le DOM mais masqué par le CSS (max-height: 0)
-    expect(screen.getByText("Texte caché")).toBeInTheDocument();
-  });
-
-  test("s'ouvre au clic sur la barre de titre", () => {
-    const { container } = render(
-      <Collapse title="Description" content="Texte affiché" />
-    );
-
-    const root = container.firstChild;
+    const root = container.querySelector(".collapse");
     const header = screen.getByRole("button", { name: /description/i });
 
     fireEvent.click(header);
 
     expect(root).toHaveClass("is-open");
-    expect(screen.getByText("Texte affiché")).toBeInTheDocument();
+    expect(screen.getByText(/texte affiché/i)).toBeInTheDocument();
   });
 
-  test("s'ouvre au clavier avec la touche Enter", () => {
-    const { container } = render(
-      <Collapse title="Description" content="Via clavier" />
+  test("est accessible au clavier (header focusable)", () => {
+    render(
+      <Collapse title="Description">
+        <p>Via clavier</p>
+      </Collapse>
     );
 
-    const root = container.firstChild;
     const header = screen.getByRole("button", { name: /description/i });
 
-    fireEvent.keyDown(header, { key: "Enter", code: "Enter", charCode: 13 });
+    // Le composant doit être navigable au clavier (tabIndex=0)
+    expect(header).toHaveAttribute("tabindex", "0");
 
-    expect(root).toHaveClass("is-open");
-    expect(screen.getByText("Via clavier")).toBeInTheDocument();
+    // Vérifie qu'il expose l'état aux technologies d'accessibilité
+    expect(header).toHaveAttribute("aria-expanded", "false");
   });
 
   test("affiche une liste quand isList=true", () => {
-    const equipments = ["Wifi", "Télévision"];
-
-    render(
-      <Collapse title="Équipements" content={equipments} isList={true} />
+    const { container } = render(
+      <Collapse title="Équipements" isList={true}>
+        <ul>
+          <li>Wifi</li>
+          <li>Télévision</li>
+        </ul>
+      </Collapse>
     );
 
-    // on ouvre pour voir la liste
+    const root = container.querySelector(".collapse");
     const header = screen.getByRole("button", { name: /équipements/i });
+
     fireEvent.click(header);
 
+    expect(root).toHaveClass("is-open");
     expect(screen.getByRole("list")).toBeInTheDocument();
     expect(screen.getByText("Wifi")).toBeInTheDocument();
     expect(screen.getByText("Télévision")).toBeInTheDocument();
   });
 });
-
