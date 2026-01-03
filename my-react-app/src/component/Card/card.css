@@ -1,47 +1,62 @@
-.gallery-container {      /* On crée une grille responsive */
+/* =========================================================
+   GRILLE (container) — compatible "gallery-container" ET "card-list"
+   ========================================================= */
+.gallery-container,
+.card-list {
+  /* Grille responsive */
   display: grid;
-  grid-template-columns: repeat(3, 1fr);         /* 3 colonnes sur grand écran */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 30px;
+
+  /* Style Kasa */
+  max-width: 1240px;
+  margin: 0 auto 50px;
   padding: 40px;
-  background-color: #f6f6f6; /* fond gris clair */
+  background: #f6f6f6;
   border-radius: 25px;
-  margin: 0 0 50px;
 }
 
-.gallery-item {
-  display: block;    /* Permet de cliquer sur toute la carte */
+/* =========================================================
+   LIEN / ITEM — compatible "gallery-item" ET "cards__link"
+   ========================================================= */
+.gallery-item,
+.cards__link {
+  display: block; /* permet de cliquer sur toute la carte */
   position: relative;
   height: 340px;
   border-radius: 10px;
   overflow: hidden;
+
   text-decoration: none;
-  color: #fff;
-  transition: transform 0.2s ease-in-out;  /* animation légère au survol */
+  color: inherit;
+
+  transition: transform 0.2s ease-in-out;
 }
-/* Effet au survol */
-.gallery-item:hover {
+
+.gallery-item:hover,
+.cards__link:hover {
   transform: scale(1.02);
 }
 
-.gallery-item::before {     /* Voile sombre permanent */
+/* Voile sombre permanent */
+.gallery-item::before {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.2);
   z-index: 1;
-  border-radius: inherit;
   pointer-events: none;
 }
 
-.gallery-item::after {   /* Voile coloré au survol */
+/* Voile coloré au survol */
+.gallery-item::after {
   content: "";
   position: absolute;
   inset: 0;
   background: #ff6060;
   opacity: 0;
   transition: opacity 0.25s ease;
-  border-radius: inherit;
-  z-index: 1;              /* au-dessus de l'image… */
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -49,21 +64,35 @@
   opacity: 0.3;
 }
 
-.gallery-item img {
-  position: absolute;
-  inset: 0;
+/* =========================================================
+   CARTE — compatible "cards"
+   ========================================================= */
+.cards {
+  position: relative;
+  height: 100%; /* prend la hauteur du lien parent */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Image — compatible "gallery-item img" ET ".cards__image" */
+.gallery-item img,
+.cards__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
   filter: brightness(0.9);
 }
 
-.gallery-item p {   /* Titre de la carte lisible */
+/* Titre — compatible "gallery-item p" ET ".cards__title" */
+.gallery-item p,
+.cards__title {
   position: absolute;
   left: 15px;
   right: 15px;
   bottom: 12px;
   margin: 0;
+
   z-index: 2;
   font-size: 18px;
   font-weight: 700;
@@ -71,29 +100,67 @@
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
-@media (max-width: 992px) {
-  .gallery-container {
-    grid-template-columns: repeat(2, 1fr);
+/* Dégradé sombre en bas (utile si tu n'utilises pas gallery-item) */
+.cards::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1024px) {
+  .gallery-container,
+  .card-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
-    padding: 25px;
+    padding: 30px 20px;
   }
-  .gallery-item {
+
+  .gallery-item,
+  .cards__link {
     height: 300px;
+  }
+
+  .gallery-item p,
+  .cards__title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-container,
+  .card-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 20px 20px 30px;
+  }
+
+  .gallery-item,
+  .cards__link {
+    height: 255px;
+  }
+
+  .gallery-item p,
+  .cards__title {
+    font-size: 14px;
   }
 }
 
 @media (max-width: 600px) {
-  .gallery-container {
-    grid-template-columns: 1fr;
-    background-color: #fff;
+  .gallery-container,
+  .card-list {
+    background: #fff;
     padding: 0;
     gap: 20px;
-    margin: 15px 0;
-  }
-  .gallery-item {
-    height: 255px;
-  }
-  .gallery-item p {
-    font-size: 16px;
+    margin: 15px 0 30px;
+    border-radius: 0;
   }
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import Banner from "../component/Banner/Banner";
-import bannerImg from "../assets/banner-img2.png";
 import Collapse from "../component/Collapse/Collapse";
 
 const items = [
@@ -30,7 +29,7 @@ export default function About() {
   return (
     <main className="about container">
 
-      <Banner image={bannerImg} alt="Montagnes" />
+      <Banner />
 
       <section className="about__list">
         {items.map(({ title, content }) => (

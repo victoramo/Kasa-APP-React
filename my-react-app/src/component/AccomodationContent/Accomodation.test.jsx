@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, test, expect, beforeEach, vi } from "vitest";
 
-import AccomodationContent from "./AccomodationContent.jsx";
+import AccomodationContent from "../../Page/Accommodation.jsx";
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");

@@ -1,37 +1,44 @@
-// src/component/Card/card.jsx
-
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Cards from "../Cards/Cards.jsx";
-import "./card.css"; // ⚠️ on pointe bien sur le CSS du dossier Card
+
+// ✅ Important : garde le CSS des cartes
+// Si ton fichier CSS est encore dans component/Cards/cards.css, mets le bon chemin.
+// Le mieux : déplace cards.css dans component/Card/ et garde cette ligne :
+import "../Card/Card.css";
 
 export default function CardList() {
-  const [gallery, setGallery] = useState([]);
+  const [logements, setLogements] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:8080/api/properties")
-      .then((response) => response.json())
-      .then((data) => setGallery(data))
-      .catch((error) =>
-        console.error("Erreur lors du chargement :", error)
-      );
+      .then((res) => {
+        if (!res.ok) throw new Error("Erreur API");
+        return res.json();
+      })
+      .then((data) => {
+        setLogements(data);
+        setHasError(false);
+      })
+      .catch(() => setHasError(true))
+      .finally(() => setIsLoading(false));
   }, []);
 
+  if (isLoading) return <p>Chargement...</p>;
+  if (hasError) return <p>Erreur : impossible de charger les logements.</p>;
+
   return (
-    <div className="gallery-container">
-      {gallery.map((item) => (
-        <Link
-          key={item.id}
-          to={`/accommodation/${item.id}`}
-          className="cards__link"
-        >
-          <Cards
-            id={item.id}
-            cover={item.cover}
-            title={item.title}
-          />
+    <section className="card-list">
+      {logements.map(({ id, cover, title }) => (
+        <Link key={id} to={`/accommodation/${id}`} className="cards__link">
+          {/* ✅ ICI : code de Cards.jsx intégré (plus besoin de Cards.jsx) */}
+          <article className="cards" data-id={id}>
+            <img className="cards__image" src={cover} alt={title} />
+            <h2 className="cards__title">{title}</h2>
+          </article>
         </Link>
       ))}
-    </div>
+    </section>
   );
 }
