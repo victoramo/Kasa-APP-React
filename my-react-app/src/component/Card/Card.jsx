@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-// ✅ Important : garde le CSS des cartes
-// Si ton fichier CSS est encore dans component/Cards/cards.css, mets le bon chemin.
-// Le mieux : déplace cards.css dans component/Card/ et garde cette ligne :
+
 import "../Card/Card.css";
 
 export default function CardList() {
